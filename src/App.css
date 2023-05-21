@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red-100: 355, 100%, 74%;
+  --red-200: 356, 100%, 66%;
+
+  --blue-100: 240, 2%, 79%;
+  --blue-400: 207, 13%, 34%;
+  --blue-600: 208, 49%, 24%;
+  --blue-800: 240, 10%, 16%;
+
+  --intro-gradient-start: 13, 100%, 72%;
+  --intro-gradient-end: 353, 100%, 62%;
+
+  --background-gradient-start: 237, 17%, 21%;
+  --background-gradient-end: 237, 23%, 32%;
+}

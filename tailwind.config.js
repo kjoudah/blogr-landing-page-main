@@ -3,7 +3,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   theme: {
     fontFamily: {
-      display: 'Overpass,sans-serif',
+      heading: 'Overpass,sans-serif',
       body: 'Ubuntu,sans-serif',
     },
     fontWeight: {
@@ -14,9 +14,13 @@ module.exports = {
       bold: '700',
     },
     extend: {
+      backgroundImage: {
+        'header-mobile': 'url(/src/images/bg-pattern-intro-mobile.svg)',
+      },
       colors: {
         'red-100': 'hsl(var(--red-100))',
         'red-200': 'hsl(var(--red-200))',
+        'blue-50': 'hsla(var(--blue-100), 0.3)',
         'blue-100': 'hsl(var(--blue-100))',
         'blue-400': 'hsl(var(--blue-400))',
         'blue-600': 'hsl(var(--blue-600))',

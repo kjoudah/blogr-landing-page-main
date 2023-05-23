@@ -1,7 +1,12 @@
 import './output.css';
+import Header from './Header/Header';
 
 function App() {
-  return <h1 className="text-blue-400 font-body">Hello</h1>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
 
 export default App;

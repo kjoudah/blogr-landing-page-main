@@ -12,6 +12,20 @@ export default function Header() {
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState([false, false, false]);
+
+  const setActiveNavItem = index => {
+    setActive(prev => {
+      return prev.map((item, ind) => {
+        if (ind == index) {
+          return !item;
+        } else {
+          return false;
+        }
+      });
+    });
+  };
+
   return (
     <nav className="flex flex-row items-center justify-between font-display p-4 md:px-16">
       <a href="#">
@@ -40,6 +54,9 @@ const NavBar = () => {
       <div className="hidden md:flex flex-row justify-between w-full mx-8 items-center">
         <ul className="flex flex-row gap-10 items-center">
           <NavItemDesktop
+            key="0"
+            open={active[0]}
+            onClick={() => setActiveNavItem(0)}
             title="Product"
             items={[
               'Overview',
@@ -50,11 +67,17 @@ const NavBar = () => {
             ]}
           />
           <NavItemDesktop
+            key="1"
             title="Company"
+            open={active[1]}
+            onClick={() => setActiveNavItem(1)}
             items={['About', 'Team', 'Blog', 'Careers']}
           />
           <NavItemDesktop
+            key="2"
             title="Connect"
+            open={active[2]}
+            onClick={() => setActiveNavItem(2)}
             items={['Contact', 'Newsletter', 'LinkedIn']}
           />
         </ul>
@@ -62,7 +85,46 @@ const NavBar = () => {
         <LoginAndSignup />
       </div>
 
-      <MobileMenu open={open} />
+      {/* <MobileMenu open={open} /> */}
+
+      <div
+        data-open={open}
+        className="data-[open=false]:hidden data-[open=true]:visible absolute w-11/12 top-[15%] left-0 right-0 mx-auto shadow-xl bg-white rounded-md p-6 md:hidden"
+      >
+        <ul className="flex flex-col justify-center items-center gap-6">
+          <NavItemMobile
+            key="0"
+            open={active[0]}
+            onClick={() => setActiveNavItem(0)}
+            title="Product"
+            items={[
+              'Overview',
+              'Pricing',
+              'Marketplace',
+              'Features',
+              'Integrations',
+            ]}
+          />
+          <NavItemMobile
+            key="1"
+            open={active[1]}
+            onClick={() => setActiveNavItem(1)}
+            title="Company"
+            items={['About', 'Team', 'Blog', 'Careers']}
+          />
+          <NavItemMobile
+            key="2"
+            open={active[2]}
+            onClick={() => setActiveNavItem(2)}
+            title="Connect"
+            items={['Contact', 'Newsletter', 'LinkedIn']}
+          />
+        </ul>
+
+        <div className="w-full bg-blue-50 h-[1px] my-6"></div>
+
+        <LoginAndSignup />
+      </div>
     </nav>
   );
 };
@@ -106,53 +168,54 @@ const Button = props => {
   );
 };
 
-const MobileMenu = props => {
-  return (
-    <div
-      data-open={props.open}
-      className="data-[open=false]:hidden data-[open=true]:visible absolute w-11/12 top-[15%] left-0 right-0 mx-auto shadow-xl bg-white rounded-md p-6 md:hidden"
-    >
-      <ul className="flex flex-col justify-center items-center gap-6">
-        <NavItemMobile
-          title="Product"
-          items={[
-            'Overview',
-            'Pricing',
-            'Marketplace',
-            'Features',
-            'Integrations',
-          ]}
-        />
-        <NavItemMobile
-          title="Company"
-          items={['About', 'Team', 'Blog', 'Careers']}
-        />
-        <NavItemMobile
-          title="Connect"
-          items={['Contact', 'Newsletter', 'LinkedIn']}
-        />
-      </ul>
+// const MobileMenu = props => {
+//   return (
+//     <div
+//       data-open={props.open}
+//       className="data-[open=false]:hidden data-[open=true]:visible absolute w-11/12 top-[15%] left-0 right-0 mx-auto shadow-xl bg-white rounded-md p-6 md:hidden"
+//     >
+//       <ul className="flex flex-col justify-center items-center gap-6">
+//         <NavItemMobile
+//           key="0"
+//           title="Product"
+//           items={[
+//             'Overview',
+//             'Pricing',
+//             'Marketplace',
+//             'Features',
+//             'Integrations',
+//           ]}
+//         />
+//         <NavItemMobile
+//           key="1"
+//           title="Company"
+//           items={['About', 'Team', 'Blog', 'Careers']}
+//         />
+//         <NavItemMobile
+//           key="2"
+//           title="Connect"
+//           items={['Contact', 'Newsletter', 'LinkedIn']}
+//         />
+//       </ul>
 
-      <div className="w-full bg-blue-50 h-[1px] my-6"></div>
+//       <div className="w-full bg-blue-50 h-[1px] my-6"></div>
 
-      <LoginAndSignup />
-    </div>
-  );
-};
+//       <LoginAndSignup />
+//     </div>
+//   );
+// };
 
 const NavItemMobile = props => {
-  const [open, setOpen] = useState(false);
-
   return (
     <li className="w-full flex flex-col gap-4 items-center">
       <button
-        onClick={() => setOpen(!open)}
-        data-open={open}
+        onClick={props.onClick}
+        data-open={props.open}
         className="flex flex-row items-center gap-2 text-blue-800 font-display text-lg font-semibold md:text-white md:text-sm"
       >
         {props.title}
         <svg
-          data-open={open}
+          data-open={props.open}
           xmlns="http://www.w3.org/2000/svg"
           width="10"
           height="7"
@@ -162,7 +225,7 @@ const NavItemMobile = props => {
         </svg>
       </button>
       <div
-        data-open={open}
+        data-open={props.open}
         className="w-full data-[open=false]:hidden data-[open=true]:visible bg-blue-50 rounded-md text-blue-400 font-body font-medium py-4"
       >
         <ul className="flex flex-col justify-center items-center gap-4">
@@ -180,18 +243,19 @@ const NavItemMobile = props => {
 };
 
 const NavItemDesktop = props => {
-  const [open, setOpen] = useState(false);
-
   return (
-    <li className="relative flex flex-col gap-4 items-center">
+    <li
+      key={props.key}
+      onClick={props.onClick}
+      className="relative flex flex-col gap-4 items-center"
+    >
       <button
-        onClick={() => setOpen(!open)}
-        data-open={open}
+        data-open={props.open}
         className="flex flex-row items-center gap-2 text-blue-800 font-display text-lg font-semibold md:text-white md:text-sm"
       >
         {props.title}
         <svg
-          data-open={open}
+          data-open={props.open}
           xmlns="http://www.w3.org/2000/svg"
           width="10"
           height="7"
@@ -201,7 +265,7 @@ const NavItemDesktop = props => {
         </svg>
       </button>
       <div
-        data-open={open}
+        data-open={props.open}
         className="absolute bg-white p-4 top-[130%] w-32 data-[open=false]:hidden data-[open=true]:visible rounded-md py-4"
       >
         <ul className="flex flex-col justify-center items-start gap-4">

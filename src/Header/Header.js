@@ -11,6 +11,72 @@ export default function Header() {
 }
 
 const NavBar = () => {
+  const navigation = [
+    {
+      name: 'Product',
+      sublinks: [
+        {
+          name: 'Overview',
+          href: '#',
+        },
+        {
+          name: 'Pricing',
+          href: '#',
+        },
+        {
+          name: 'Marketplace',
+          href: '#',
+        },
+        {
+          name: 'Overview',
+          href: '#',
+        },
+        {
+          name: 'Integrations',
+          href: '#',
+        },
+      ],
+    },
+    {
+      name: 'Company',
+      sublinks: [
+        {
+          name: 'About',
+          href: '#',
+        },
+        {
+          name: 'Team',
+          href: '#',
+        },
+        {
+          name: 'Blogs',
+          href: '#',
+        },
+        {
+          name: 'Careers',
+          href: '#',
+        },
+      ],
+    },
+    {
+      name: 'Connect',
+      sublinks: [
+        {
+          name: 'Contact',
+          href: '#',
+        },
+        {
+          name: 'Newsletter',
+          href: '#',
+        },
+        {
+          name: 'LinkedIn',
+          href: '#',
+        },
+      ],
+    },
+  ];
+
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState([false, false, false]);
 
@@ -39,12 +105,12 @@ const NavBar = () => {
             <path
               d="M23.607.98l1.414 1.413L14.414 13l10.607 10.607-1.414 1.414L13 14.414 2.393 25.021.98 23.607 11.586 13 .98 2.393 2.393.98 13 11.586 23.607.98z"
               fill="#FFF"
-              fill-rule="evenodd"
+              fillRule="evenodd"
             />
           </svg>
         ) : (
           <svg width="32" height="18" xmlns="http://www.w3.org/2000/svg">
-            <g fill="#FFF" fill-rule="evenodd">
+            <g fill="#FFF" fillRule="evenodd">
               <path d="M0 0h32v2H0zM0 8h32v2H0zM0 16h32v2H0z" />
             </g>
           </svg>
@@ -53,72 +119,39 @@ const NavBar = () => {
 
       <div className="hidden md:flex flex-row justify-between w-full mx-8 items-center">
         <ul className="flex flex-row gap-10 items-center">
-          <NavItemDesktop
-            key="0"
-            open={active[0]}
-            onClick={() => setActiveNavItem(0)}
-            title="Product"
-            items={[
-              'Overview',
-              'Pricing',
-              'Marketplace',
-              'Features',
-              'Integrations',
-            ]}
-          />
-          <NavItemDesktop
-            key="1"
-            title="Company"
-            open={active[1]}
-            onClick={() => setActiveNavItem(1)}
-            items={['About', 'Team', 'Blog', 'Careers']}
-          />
-          <NavItemDesktop
-            key="2"
-            title="Connect"
-            open={active[2]}
-            onClick={() => setActiveNavItem(2)}
-            items={['Contact', 'Newsletter', 'LinkedIn']}
-          />
+          {navigation.map((navItem, index) => {
+            return (
+              <NavItemDesktop
+                key={index}
+                open={active[index]}
+                onClick={() => setActiveNavItem(index)}
+                title={navItem.name}
+                items={navItem.sublinks}
+              />
+            );
+          })}
         </ul>
 
         <LoginAndSignup />
       </div>
-
-      {/* <MobileMenu open={open} /> */}
 
       <div
         data-open={open}
         className="data-[open=false]:hidden data-[open=true]:visible absolute w-11/12 top-[15%] left-0 right-0 mx-auto shadow-xl bg-white rounded-md p-6 md:hidden"
       >
         <ul className="flex flex-col justify-center items-center gap-6">
-          <NavItemMobile
-            key="0"
-            open={active[0]}
-            onClick={() => setActiveNavItem(0)}
-            title="Product"
-            items={[
-              'Overview',
-              'Pricing',
-              'Marketplace',
-              'Features',
-              'Integrations',
-            ]}
-          />
-          <NavItemMobile
-            key="1"
-            open={active[1]}
-            onClick={() => setActiveNavItem(1)}
-            title="Company"
-            items={['About', 'Team', 'Blog', 'Careers']}
-          />
-          <NavItemMobile
-            key="2"
-            open={active[2]}
-            onClick={() => setActiveNavItem(2)}
-            title="Connect"
-            items={['Contact', 'Newsletter', 'LinkedIn']}
-          />
+          {navigation.map((navItem, index) => {
+            console.log(navItem);
+            return (
+              <NavItemMobile
+                key={index}
+                open={active[index]}
+                onClick={() => setActiveNavItem(index)}
+                title={navItem.name}
+                items={navItem.sublinks}
+              />
+            );
+          })}
         </ul>
 
         <div className="w-full bg-blue-50 h-[1px] my-6"></div>
@@ -149,7 +182,7 @@ const HeaderContent = () => {
 const CallToActionButton = props => {
   return (
     <a
-      className="font-body font-bold border px-4 py-2 border-white rounded-full bg-white text-red-200 text-sm"
+      className="font-body font-bold border px-4 py-2 border-white rounded-full bg-white text-red-200 text-sm hover:bg-red-50 hover:border-none hover:text-white"
       href="#"
     >
       {props.children}
@@ -160,50 +193,14 @@ const CallToActionButton = props => {
 const Button = props => {
   return (
     <a
-      className="font-body font-bold border px-4 py-2 border-white rounded-full bg-transparent text-white text-sm"
+      className="font-body font-bold border px-4 py-2 border-white rounded-full bg-transparent text-white text-sm
+      hover:bg-white hover:text-red-100 hover:font-bold"
       href="#"
     >
       {props.children}
     </a>
   );
 };
-
-// const MobileMenu = props => {
-//   return (
-//     <div
-//       data-open={props.open}
-//       className="data-[open=false]:hidden data-[open=true]:visible absolute w-11/12 top-[15%] left-0 right-0 mx-auto shadow-xl bg-white rounded-md p-6 md:hidden"
-//     >
-//       <ul className="flex flex-col justify-center items-center gap-6">
-//         <NavItemMobile
-//           key="0"
-//           title="Product"
-//           items={[
-//             'Overview',
-//             'Pricing',
-//             'Marketplace',
-//             'Features',
-//             'Integrations',
-//           ]}
-//         />
-//         <NavItemMobile
-//           key="1"
-//           title="Company"
-//           items={['About', 'Team', 'Blog', 'Careers']}
-//         />
-//         <NavItemMobile
-//           key="2"
-//           title="Connect"
-//           items={['Contact', 'Newsletter', 'LinkedIn']}
-//         />
-//       </ul>
-
-//       <div className="w-full bg-blue-50 h-[1px] my-6"></div>
-
-//       <LoginAndSignup />
-//     </div>
-//   );
-// };
 
 const NavItemMobile = props => {
   return (
@@ -221,7 +218,7 @@ const NavItemMobile = props => {
           height="7"
           className="stroke-red-100 data-[open=false]:rotate-0 data-[open=true]:-rotate-180 transition-transform duration-300 md:stroke-white"
         >
-          <path fill="none" stroke-width="2" d="M1 1l4 4 4-4" />
+          <path fill="none" strokeWidth="2" d="M1 1l4 4 4-4" />
         </svg>
       </button>
       <div
@@ -232,7 +229,7 @@ const NavItemMobile = props => {
           {props.items.map(item => {
             return (
               <li>
-                <a href="#">{item}</a>
+                <a href={item.href}>{item.name}</a>
               </li>
             );
           })}
@@ -251,7 +248,7 @@ const NavItemDesktop = props => {
     >
       <button
         data-open={props.open}
-        className="flex flex-row items-center gap-2 text-blue-800 font-display text-lg font-semibold md:text-white md:text-sm"
+        className="flex flex-row items-center gap-2 text-blue-800 font-display text-lg font-semibold md:text-white md:text-sm hover:underline"
       >
         {props.title}
         <svg
@@ -261,7 +258,7 @@ const NavItemDesktop = props => {
           height="7"
           className="stroke-red-100 data-[open=false]:rotate-0 data-[open=true]:-rotate-180 transition-transform duration-300 md:stroke-white"
         >
-          <path fill="none" stroke-width="2" d="M1 1l4 4 4-4" />
+          <path fill="none" strokeWidth="2" d="M1 1l4 4 4-4" />
         </svg>
       </button>
       <div
@@ -272,7 +269,7 @@ const NavItemDesktop = props => {
           {props.items.map(item => {
             return (
               <li className="text-blue-800 font-body font-medium text-sm hover:font-semibold">
-                <a href="#">{item}</a>
+                <a href={item.href}>{item.name}</a>
               </li>
             );
           })}
@@ -286,13 +283,13 @@ const LoginAndSignup = () => {
   return (
     <div className="flex flex-col gap-2 justify-center items-center md:flex-row md:gap-4">
       <a
-        className="font-heading text-blue-800 text-lg font-semibold md:text-white md:text-sm"
+        className="font-heading text-blue-800 text-lg font-semibold md:text-white md:text-sm md:hover:underline"
         href="#"
       >
         Login
       </a>
       <a
-        className="font-body font-medium w-28 font-medium text-center text-white px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 rounded-full md:bg-none md:bg-white md:text-red-100 md:text-sm"
+        className="font-body font-medium w-28 text-center text-white px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 rounded-full md:bg-none md:bg-white md:text-red-100 md:text-sm hover:font-bold md:hover:bg-red-50 md:hover:text-white"
         href="#"
       >
         Sign Up

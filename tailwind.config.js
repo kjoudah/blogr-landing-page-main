@@ -22,6 +22,7 @@ module.exports = {
         'header-mobile': 'url(/src/images/bg-pattern-intro-mobile.svg)',
       },
       colors: {
+        'red-50': 'hsl(var(--red-50))',
         'red-100': 'hsl(var(--red-100))',
         'red-200': 'hsl(var(--red-200))',
         'blue-50': 'hsla(var(--blue-100), 0.3)',

@@ -3,7 +3,7 @@ import logo from './../images/logo.svg';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 left-0 header-pattern-mobile p-4 flex flex-col gap-8 rounded-bl-[5rem]">
+    <header className="top-0 left-0 header-pattern-mobile p-4 flex flex-col gap-8 rounded-bl-[5rem]">
       <NavBar />
       <HeaderContent />
     </header>

@@ -107,4 +107,25 @@ li {
     background-size: 300%;
     background-position: 40% 35%;
   }
+
+  .infrastructure-background-mobile {
+    background-image: linear-gradient(
+      to bottom,
+      hsl(var(--background-gradient-start)),
+      hsl(var(--background-gradient-end))
+    );
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 0 5rem 0 5rem;
+  }
+
+  .infrastructure-background-mobile::before {
+    content: '';
+    background: url(./images/bg-pattern-circles.svg) no-repeat center/contain;
+    inset: 0;
+    transform: translateY(-30%);
+    z-index: -1;
+    position: absolute;
+    aspect-ratio: 1/1;
+  }
 }

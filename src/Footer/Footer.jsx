@@ -65,8 +65,8 @@ export default function Footer() {
     },
   ];
   return (
-    <footer className="">
-      <nav className="bg-blue-800 rounded-tr-[5rem] flex flex-col justify-center items-center py-16 gap-8 text-center font-body">
+    <footer className="bg-blue-800 rounded-tr-[5rem]">
+      <nav className="flex flex-col justify-center items-center py-16 gap-8 text-center font-body md:flex-row md:justify-between md:items-start md:px-32">
         <div>
           <svg width="101" height="40" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -80,7 +80,7 @@ export default function Footer() {
           return (
             <section className="flex flex-col gap-4">
               <h2 className="text-white font-semibold">{navItem.name}</h2>
-              <ul className="text-blue-100">
+              <ul className="text-blue-100 flex flex-col gap-1 md:gap-4">
                 {navItem.sublinks.map(sublink => {
                   return (
                     <li className="hover:underline">

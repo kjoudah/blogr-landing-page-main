@@ -83,7 +83,6 @@ li {
 :root {
   --red-50: 355, 100%, 74%;
   --red-100: 8, 99%, 71%;
-  /* --red-100: 355, 100%, 74%; */
   --red-200: 356, 100%, 66%;
 
   --blue-100: 240, 2%, 79%;
@@ -115,17 +114,6 @@ li {
       hsl(var(--background-gradient-end))
     );
     isolation: isolate;
-    overflow: hidden;
     border-radius: 0 5rem 0 5rem;
-  }
-
-  .infrastructure-background-mobile::before {
-    content: '';
-    background: url(./images/bg-pattern-circles.svg) no-repeat center/contain;
-    inset: 0;
-    transform: translateY(-30%);
-    z-index: -1;
-    position: absolute;
-    aspect-ratio: 1/1;
   }
 }

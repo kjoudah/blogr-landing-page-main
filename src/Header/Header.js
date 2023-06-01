@@ -165,8 +165,8 @@ const NavBar = () => {
 const HeaderContent = () => {
   return (
     <div className="text-white font-heading font-light flex flex-col justify-center items-center text-center gap-4 pt-16 pb-28">
-      <h1 className="text-3xl">A modern publishing platform</h1>
-      <p className="font-body font-normal">
+      <h1 className="text-3xl lg:text-5xl">A modern publishing platform</h1>
+      <p className="font-body font-normal lg:text-xl">
         Grow your audience and build your online brand
       </p>
       <div className="flex flex-row gap-4">
@@ -182,7 +182,7 @@ const HeaderContent = () => {
 const CallToActionButton = props => {
   return (
     <a
-      className="font-body font-bold border px-4 py-2 border-white rounded-full bg-white text-red-200 text-sm hover:bg-red-50 hover:border-none hover:text-white"
+      className="font-body font-bold border px-4 py-2 border-white rounded-full bg-white text-red-200 text-sm hover:bg-red-50 hover:border-none hover:text-white lg:text-xl"
       href="#"
     >
       {props.children}
@@ -194,7 +194,7 @@ const Button = props => {
   return (
     <a
       className="font-body font-bold border px-4 py-2 border-white rounded-full bg-transparent text-white text-sm
-      hover:bg-white hover:text-red-100 hover:font-bold"
+      hover:bg-white hover:text-red-100 hover:font-bold lg:text-xl  "
       href="#"
     >
       {props.children}
@@ -248,7 +248,7 @@ const NavItemDesktop = props => {
     >
       <button
         data-open={props.open}
-        className="flex flex-row items-center gap-2 text-blue-800 font-display text-lg font-semibold md:text-white md:text-sm hover:underline"
+        className="flex flex-row items-center gap-2 text-blue-800 font-display text-lg font-semibold md:text-white md:text-sm hover:underline lg:text-xl"
       >
         {props.title}
         <svg
@@ -268,7 +268,7 @@ const NavItemDesktop = props => {
         <ul className="flex flex-col justify-center items-start gap-4">
           {props.items.map(item => {
             return (
-              <li className="text-blue-800 font-body font-medium text-sm hover:font-semibold">
+              <li className="text-blue-800 font-body font-medium text-sm hover:font-semibold lg:text-lg">
                 <a href={item.href}>{item.name}</a>
               </li>
             );
@@ -281,15 +281,15 @@ const NavItemDesktop = props => {
 
 const LoginAndSignup = () => {
   return (
-    <div className="flex flex-col gap-2 justify-center items-center md:flex-row md:gap-4">
+    <div className="flex flex-col gap-2 justify-center items-center md:flex-row md:gap-4 ">
       <a
-        className="font-heading text-blue-800 text-lg font-semibold md:text-white md:text-sm md:hover:underline"
+        className="font-heading text-blue-800 text-lg font-semibold md:text-white md:text-sm md:hover:underline lg:text-lg"
         href="#"
       >
         Login
       </a>
       <a
-        className="font-body font-medium w-28 text-center text-white px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 rounded-full md:bg-none md:bg-white md:text-red-100 md:text-sm hover:font-bold md:hover:bg-red-50 md:hover:text-white"
+        className="font-body font-medium w-28 text-center text-white px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 rounded-full md:bg-none md:bg-white md:text-red-100 md:text-sm hover:font-bold md:hover:bg-red-50 md:hover:text-white lg:text-lg"
         href="#"
       >
         Sign Up
